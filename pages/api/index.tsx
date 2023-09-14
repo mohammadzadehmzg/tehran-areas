@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import {array} from "zod";
 
 var Areas = [
     {
@@ -1717,9 +1716,6 @@ var Areas = [
     }
 ];
 
-interface Req {
-    query?: string;
-}
 
 export default function handler(req, res) {
 
