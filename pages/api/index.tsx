@@ -1,6 +1,7 @@
-import Image from 'next/image'
+import type {NextApiRequest, NextApiResponse} from 'next'
 
-var Areas = [
+
+const Areas = [
     {
         "name": "رستم آباد- فرمانیه"
     },
@@ -1716,19 +1717,49 @@ var Areas = [
     }
 ];
 
+type ResponseData = {
+    message: string
+}
 
-export default function handler(req, res) {
+interface Area {
+    name: string;
+}
 
-    console.log(req.query)
+const filter = (name: string | string[]): object => {
     let results = [];
-    let param = req.query.query;
-    for (var i = 0; i < Areas.length; i++) {
+    for (let i = 0; i < Areas.length; i++) {
         for (let key in Areas[i]) {
-            if (Areas[i][key].indexOf(param) != -1) {
+            if (Areas[i][key].indexOf(name) != -1) {
                 results.push(Areas[i]);
             }
         }
     }
-
-    res.status(200).json(results);
+    return results;
 }
+
+export default function handler(
+    req: NextApiRequest,
+    res: NextApiResponse<ResponseData>
+) {
+    const query = req.query;
+    const {name} = query;
+    filter(name);
+    res.status(200).json({message: 'Hello from Next.js!'})
+}
+
+// export default function handler(req, res) {
+//
+//     // console.log(req.query)
+//     let results = [];
+//     const query = req.query;
+//     const {name} = query;
+//     for (var i = 0; i < Areas.length; i++) {
+//         for (let key in Areas[i]) {
+//             if (Areas[i][key].indexOf(name) != -1) {
+//                 results.push(Areas[i]);
+//             }
+//         }
+//     }
+//
+//     res.status(200).json(results);
+// }

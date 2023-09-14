@@ -3,8 +3,8 @@ import Image from 'next/image'
 "use client"
 import {useState, useEffect} from 'react';
 
-async function getData(param) {
-    const res = await fetch(`http://localhost:3000/api?query=${param}`)
+async function getData(param: string) {
+    const res = await fetch(`http://localhost:3000/api?name=${param}`)
     // The return value is *not* serialized
     // You can return Date, Map, Set, etc.
 
@@ -26,7 +26,7 @@ export default function Home() {
         setChangeIcon(!changeIcon);
     }
 
-    const handelChange = async e => {
+    const handelChange = async (e: any) => {
         let param = e.target.value;
         const data = await getData(param)
         console.log(data)
@@ -57,7 +57,7 @@ export default function Home() {
 
                         <div className="absolute text-right w-full end-2 top-16 max-h-screen p-4 overflow-auto">
                             {
-                                areas.map((val, key) => (
+                                areas.map((val: any, key) => (
                                     <div key={key}
                                          className="flex items-center font-sans justify-between mb-4 pb-3 border-b">
                                         <input id={`default-radio-${key}`} type="radio" value="" name="default-radio"
