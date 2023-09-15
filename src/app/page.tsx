@@ -4,7 +4,8 @@ import Image from 'next/image'
 import {useState, useEffect} from 'react';
 
 async function getData(param: string) {
-    const res = await fetch(`/api?name=${param}`)
+    let hostname = location.hostname == "localhost" ? "" : hostname;
+    const res = await fetch(`${hostname}/api?name=${param}`)
     // The return value is *not* serialized
     // You can return Date, Map, Set, etc.
 
