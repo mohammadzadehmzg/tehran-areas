@@ -2,8 +2,20 @@ import Image from 'next/image'
 
 "use client"
 import {useState, useEffect} from 'react';
+import {NextResponse} from 'next/server'
 
-const getData = async (param: string) => {
+export async function getData(param: string) {
+    const res = await fetch(`/api?name=${param}`, {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    const data = await res.json()
+
+    return data;
+}
+
+/*const getData = async (param: string) => {
     let hostname = location.hostname == "localhost" ? "" : hostname;
     console.log(location.hostname)
     const res = await fetch(`/api?name=${param}`, {
@@ -20,7 +32,7 @@ const getData = async (param: string) => {
     }
 
     return res.json()
-}
+}*/
 
 export default function Home() {
 
