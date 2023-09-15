@@ -1718,48 +1718,34 @@ const Areas = [
 ];
 
 type ResponseData = {
-    message: string
+    name: string
 }
 
 interface Area {
     name: string;
 }
 
-const filter = (name: string | string[]): object => {
+const filter = (name: any): object => {
     let results = [];
     for (let i = 0; i < Areas.length; i++) {
         for (let key in Areas[i]) {
-            if (Areas[i][key].indexOf(name) != -1) {
+            let condition: number = Areas[i]["name"].indexOf(name);
+            if (condition != -1) {
                 results.push(Areas[i]);
+                console.log(Areas[i])
             }
         }
     }
+    // console.time('loop');
     return results;
 }
 
 export default function handler(
     req: NextApiRequest,
-    res: NextApiResponse<ResponseData>
+    res: NextApiResponse
 ) {
     const query = req.query;
     const {name} = query;
-    filter(name);
-    res.status(200).json({message: 'Hello from Next.js!'})
+    let result = filter(name);
+    res.status(200).json(result)
 }
-
-// export default function handler(req, res) {
-//
-//     // console.log(req.query)
-//     let results = [];
-//     const query = req.query;
-//     const {name} = query;
-//     for (var i = 0; i < Areas.length; i++) {
-//         for (let key in Areas[i]) {
-//             if (Areas[i][key].indexOf(name) != -1) {
-//                 results.push(Areas[i]);
-//             }
-//         }
-//     }
-//
-//     res.status(200).json(results);
-// }
