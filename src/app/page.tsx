@@ -2,12 +2,11 @@ import Image from 'next/image'
 
 "use client"
 import {useState, useEffect} from 'react';
-import getConfig from 'next/config'
-const { publicRuntimeConfig } = getConfig()
+
 const getData = async (param: string) => {
     let hostname = location.hostname == "localhost" ? "" : hostname;
     console.log(location.hostname)
-    const res = await fetch(`${publicRuntimeConfig}/api?name=${param}`)
+    const res = await fetch(`https://tehran-area.vercel.app/api?name=${param}`)
     // The return value is *not* serialized
     // You can return Date, Map, Set, etc.
 
