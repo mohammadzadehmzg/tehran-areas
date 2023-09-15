@@ -6,7 +6,7 @@ import {useState, useEffect} from 'react';
 async function getData(param: string) {
     let hostname = location.hostname == "localhost" ? "" : hostname;
     console.log(location.hostname)
-    const res = await fetch(`${hostname}/api?name=${param}`)
+    const res = await fetch(`https://tehran-area.vercel.app/api?name=${param}`)
     // The return value is *not* serialized
     // You can return Date, Map, Set, etc.
 
