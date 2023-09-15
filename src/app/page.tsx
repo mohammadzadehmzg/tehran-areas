@@ -6,7 +6,11 @@ import {useState, useEffect} from 'react';
 const getData = async (param: string) => {
     let hostname = location.hostname == "localhost" ? "" : hostname;
     console.log(location.hostname)
-    const res = await fetch(`/api?name=${param}`)
+    const res = await fetch(`/api?name=${param}`, {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
     // The return value is *not* serialized
     // You can return Date, Map, Set, etc.
 
