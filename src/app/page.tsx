@@ -3,9 +3,13 @@ import Image from 'next/image'
 "use client"
 import {useState, useEffect} from 'react';
 import {NextResponse} from 'next/server'
+import getConfig from "next/config";
+const { publicRuntimeConfig } = getConfig();
+export const API_URL = publicRuntimeConfig.apiUrl;
+
 
 export async function getData(param: string) {
-    const res = await fetch(`${process.env.API_URL}/api?name=${param}`, {
+    const res = await fetch(`${API_URL}/api?name=${param}`, {
         headers: {
             'Content-Type': 'application/json',
         },
