@@ -5,7 +5,7 @@ import {useState, useEffect} from 'react';
 import {NextResponse} from 'next/server'
 
 export async function getData(param: string) {
-    const res = await fetch(`/api?name=${param}`, {
+    const res = await fetch(`${process.env.API_URL}/api?name=${param}`, {
         headers: {
             'Content-Type': 'application/json',
         },
