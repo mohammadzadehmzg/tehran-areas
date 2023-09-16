@@ -4,6 +4,7 @@ import Image from 'next/image'
 import {useState, useEffect} from 'react';
 import {NextResponse} from 'next/server'
 import Axios from "axios";
+
 // import getConfig from "next/config";
 // const { publicRuntimeConfig } = getConfig();
 
