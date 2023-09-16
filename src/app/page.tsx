@@ -5,8 +5,8 @@ import {useState, useEffect} from 'react';
 import {NextResponse} from 'next/server'
 import Axios from "axios";
 
-// import getConfig from "next/config";
-// const { publicRuntimeConfig } = getConfig();
+import getConfig from "next/config";
+const { publicRuntimeConfig } = getConfig();
 
 // export const API_URL = publicRuntimeConfig.apiUrl;
 
@@ -29,7 +29,7 @@ import Axios from "axios";
 export async function getData(param: string) {
 
     const res = await Axios({
-        url: `/api?name=${param}`,
+        url: `${publicRuntimeConfig.apiUrl}/api?name=${param}`,
         method: "GET"
     });
     // const data = await res.json()
