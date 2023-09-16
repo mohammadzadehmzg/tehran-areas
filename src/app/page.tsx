@@ -3,20 +3,37 @@ import Image from 'next/image'
 "use client"
 import {useState, useEffect} from 'react';
 import {NextResponse} from 'next/server'
-import getConfig from "next/config";
-const { publicRuntimeConfig } = getConfig();
-export const API_URL = publicRuntimeConfig.apiUrl;
+import Axios from "axios";
+// import getConfig from "next/config";
+// const { publicRuntimeConfig } = getConfig();
 
+// export const API_URL = publicRuntimeConfig.apiUrl;
+
+// export const setApiURL = () => {
+//     Axios.defaults.baseURL = API_URL;
+// };
+
+
+// export async function getData(param: string) {
+//     const res = await fetch(`${API_URL}/api?name=${param}`, {
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//     })
+//     const data = await res.json()
+//
+//     return data;
+// }
 
 export async function getData(param: string) {
-    const res = await fetch(`${API_URL}/api?name=${param}`, {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    })
-    const data = await res.json()
 
-    return data;
+    const res = await Axios({
+        url: `/api?name=${param}`,
+        method: "GET"
+    });
+    // const data = await res.json()
+
+    return res.data;
 }
 
 /*const getData = async (param: string) => {
